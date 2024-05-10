@@ -1,4 +1,4 @@
-import type { User } from "../types.ts";
+import type { User } from "./types.ts";
 
 import NavBar from "./components/NavBar";
 import Home from "./pages/Home";
