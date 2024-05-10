@@ -1,4 +1,5 @@
 export interface User {
+  _id: string,
   name: string,
   username: string,
   bio: string,
@@ -11,6 +12,7 @@ export interface User {
 }
 
 export interface Post {
+  _id: string,
   user: User,
   text: string,
   images: string[],
@@ -21,6 +23,7 @@ export interface Post {
 }
 
 export interface Comment {
+  _id: string,
   user: User,
   post: Post,
   parentComment: Comment,
@@ -32,6 +35,7 @@ export interface Comment {
 }
 
 export interface Notification {
+  _id: string,
   from: User,
   to: User,
   type: string,
@@ -42,6 +46,7 @@ export interface Notification {
 }
 
 export interface Message {
+  _id: string,
   from: User,
   to: User,
   conversation: Conversation,
@@ -52,6 +57,7 @@ export interface Message {
 }
 
 export interface Conversation {
+  _id: string,
   user1: User,
   user2: User,
   messages: Message[],
