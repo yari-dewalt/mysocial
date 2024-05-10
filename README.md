@@ -9,6 +9,7 @@
     <li><b>Follow Users:</b> Stay connected with friends and other users.</li>
     <li><b>Real-time messaging:</b> Chat with friends and other users instantly and in real-time.</li>
     <li><b>Notification system:</b> Stay informed with the instantaneous notification system.</li>
+</ul>
 <h3>Made with</h3>
 <ul>
     <li>React (TypeScript)</li>
