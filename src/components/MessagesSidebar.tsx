@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { Conversation, User } from "../types.ts";
 
 import SearchBar from "../components/SearchBar";

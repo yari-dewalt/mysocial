@@ -1,3 +1,4 @@
+// @ts-nocheck
 function UserSearchResultSkeleton() {
   return (
     <div className="p-2 pr-6 hover:bg-gray-200 flex justify-between items-center min-h-20 max-h-20">

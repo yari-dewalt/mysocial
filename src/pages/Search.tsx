@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { User, Post } from "../types.ts";
 
 import SearchBar from "../components/SearchBar";

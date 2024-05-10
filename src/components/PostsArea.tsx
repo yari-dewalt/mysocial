@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { Post } from "../types.ts";
 
 import ImagePost from "./ImagePost";

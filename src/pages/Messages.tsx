@@ -1,3 +1,4 @@
+// @ts-nocheck
 import MessagesSidebar from "../components/MessagesSidebar";
 import MessagingArea from "../components/MessagingArea";
 

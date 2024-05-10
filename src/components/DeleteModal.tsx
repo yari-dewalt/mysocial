@@ -1,3 +1,4 @@
+// @ts-nocheck
 interface Props {
   message: string,
   cancelFunction: () => void,

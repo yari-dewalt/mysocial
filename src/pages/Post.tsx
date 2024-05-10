@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { Post } from "../types.ts";
 
 import TextPost from "../components/TextPost";

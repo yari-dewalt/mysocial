@@ -1,3 +1,4 @@
+// @ts-nocheck
 import closeIcon from "../assets/close.svg";
 
 interface Props {

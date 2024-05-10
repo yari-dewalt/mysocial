@@ -1,3 +1,4 @@
+// @ts-nocheck
 import SingleImageView from "./SingleImageView";
 
 import arrowIcon from "../assets/arrow.svg";

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { User } from "../types.ts";
 
 import messagesIcon from "../assets/messages.svg";

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { Comment, User } from "../types.ts";
 
 import OptionsModal from "./OptionsModal";

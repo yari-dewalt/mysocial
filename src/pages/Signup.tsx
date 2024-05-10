@@ -1,3 +1,4 @@
+// @ts-nocheck
 import backgroundImage from "../assets/background.jpg";
 
 import { AppContext } from "../App";

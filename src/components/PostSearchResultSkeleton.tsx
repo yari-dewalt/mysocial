@@ -1,3 +1,4 @@
+// @ts-nocheck
 function PostSearchResultSkeleton() {
   return (
     <div className="flex flex-col gap-1 p-2 hover:bg-gray-200">

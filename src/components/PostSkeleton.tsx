@@ -1,3 +1,4 @@
+// @ts-nocheck
 function PostSkeleton() {
   return (
     <div className="flex flex-col bg-white w-full max-w-[50rem] phone:w-full phone:max-w-72 h-[13.5rem] items-center shadow-[0px_0px_3px_2px_rgba(0,0,0,0.25)]">

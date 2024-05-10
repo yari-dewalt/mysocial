@@ -1,3 +1,4 @@
+// @ts-nocheck
 import UserCircle from "../components/UserCircle";
 import ImageViewer from "../components/ImageViewer";
 

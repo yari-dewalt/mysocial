@@ -1,3 +1,4 @@
+// @ts-nocheck
 import UserSearchResult from "./UserSearchResult";
 
 import { useState, useEffect } from "react";

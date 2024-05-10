@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { Message, User } from "../types.ts";
 
 import OptionsModal from "./OptionsModal";

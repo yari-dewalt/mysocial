@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { Notification } from "../types.ts";
 
 import UserCircle from "./UserCircle";

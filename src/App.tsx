@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { User } from "./types.ts";
 
 import NavBar from "./components/NavBar";

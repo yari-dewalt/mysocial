@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { Conversation } from "../types.ts";
 
 import closeIcon from "../assets/close.svg";

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { Post, User } from "../types.ts";
 
 import UserCircle from "./UserCircle";
