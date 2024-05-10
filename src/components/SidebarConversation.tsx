@@ -46,7 +46,7 @@ function SidebarConversation({ conversation, removeConversation }: Props) {
   return (
     <Link to={`/messages/${conversation._id}`} className={`group flex p-2 min-w-0 justify-between items-center ${isSelected ? "bg-gray-300" : "hover:bg-gray-200"}`}>
       <div className={`grow min-w-0 flex items-center gap-2 `}>
-        <img src={conversationUser.image} className="rounded-full min-w-12 min-h-12 w-12 h-12"></img>
+        <img src={conversationUser.image} className="object-cover rounded-full min-w-12 min-h-12 w-12 h-12"></img>
         <div className="flex flex-col">
           <h2 className="break-words font-medium">{conversationUser.name}</h2>
           {conversation.lastMessage &&
