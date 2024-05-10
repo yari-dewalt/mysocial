@@ -1,6 +1,6 @@
-<h1 align="center">MySocial</h1>
+<h1 align="center"><a href="https://yari-dewalt-mysocial.netlify.app">MySocial</a></h1>
 <h2>About</h2>
-<p>MySocial is a social media platform project based off of Instagram and Twitter (now <b>X</b>). It has a functional and easy to use interface for the frontend that is supported by a custom made REST API backend.</p>
+<p>MySocial is a social media platform project based off of Instagram and Twitter (now <b>X</b>). It has a functional and easy to use interface for the frontend that is supported by a custom made REST API backend (Note: The backend is currently hosted using a free tier hosting service, which means that it might be sleeping if not used for a while. If this is the case, expect a longer initial load time)</p>
 <h2>Features</h2>
 <ul>
     <li><b>Create, Edit, and Delete Posts:</b> Share your thoughts and images with ease.</li>
