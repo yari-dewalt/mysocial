@@ -31,7 +31,7 @@ function App() {
   const [user, setUser] = useState<User>(JSON.parse(localStorage.getItem("user")));
   const [loadingProgress, setLoadingProgress] = useState<number>(0);
 
-  function handleUser(newUserData) {
+  function handleUser(newUserData: User) {
     setUser(newUserData);
     localStorage.setItem("user", JSON.stringify(newUserData));
   }
@@ -61,7 +61,7 @@ function App() {
     socket.connect(); // Connect
 
     // Check if user is stored in localStorage
-    const storedUser = localStorage.getItem("user");
+    const storedUser: User = localStorage.getItem("user");
     if (storedUser) {
       const parsedUser = JSON.parse(storedUser);
       setUser(parsedUser);
