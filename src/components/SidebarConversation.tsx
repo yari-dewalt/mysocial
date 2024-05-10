@@ -1,3 +1,5 @@
+import type { Conversation } from "../types.ts";
+
 import closeIcon from "../assets/close.svg";
 
 import { AppContext } from "../App";
@@ -6,7 +8,12 @@ import { useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import TimeAgo from "javascript-time-ago";
 
-function SidebarConversation({ conversation, removeConversation }) {
+interface Props {
+  conversation: Conversation,
+  removeConversation: () => void
+}
+
+function SidebarConversation({ conversation, removeConversation }: Props) {
   const { user } = useContext(AppContext);
   const params = useParams();
   const currentConversationId = params.conversationId;

@@ -1,10 +1,12 @@
+import type { Post } from "../types.ts";
+
 import UserCircle from "./UserCircle";
 import ImageViewer from "./ImageViewer"; // Assuming this is a component you have
 import { Link } from "react-router-dom";
 import TimeAgo from "javascript-time-ago";
 
-function PostSearchResult({ post }) {
-  const timeAgo = new TimeAgo("en-US");
+function PostSearchResult({ post }: Post) {
+  const timeAgo: TimeAgo = new TimeAgo("en-US");
 
   return (
     <>

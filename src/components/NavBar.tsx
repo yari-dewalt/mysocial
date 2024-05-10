@@ -1,3 +1,5 @@
+import type { User } from "../types.ts";
+
 import NavItem from "./NavItem";
 import ProfileModule from "./ProfileModule";
 
@@ -21,10 +23,10 @@ import { useMediaQuery } from "@react-hook/media-query";
 function NavBar() {
   const [selected, setSelected] = useState<number>(0);
   const location = useLocation();
-  const { user } = useContext(AppContext);
+  const { user }: User = useContext(AppContext);
   const [numNotifications, setNumNotifications] = useState<number>(user.notifications.length);
   const [showProfileModule, setShowProfileModule] = useState<boolean>(false);
-  const isPhone = useMediaQuery("(max-width: 610px)");
+  const isPhone: boolean = useMediaQuery("(max-width: 610px)");
 
   function handleSocketEvent() {
     setTimeout(() => {

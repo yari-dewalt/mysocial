@@ -1,4 +1,5 @@
-import UserCircle from "./UserCircle";
+import type { Comment, User } from "../types.ts";
+
 import OptionsModal from "./OptionsModal";
 import DeleteModal from "./DeleteModal";
 
@@ -16,11 +17,16 @@ import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en"
 TimeAgo.addDefaultLocale(en);
 
-function Comment({ comment, removeComment }) {
-  const timeAgo = new TimeAgo("en-US");
-  const { user } = useContext(AppContext);
+interface Props {
+  comment: Comment,
+  removeComment: () => void
+}
+
+function Comment({ comment, removeComment }: Props) {
+  const timeAgo: TimeAgo = new TimeAgo("en-US");
+  const { user }: User = useContext(AppContext);
   const [commentText, setCommentText] = useState<string>(comment.text);
-  const [replies, setReplies] = useState([]);
+  const [replies, setReplies] = useState<Comment[]>([]);
   const [showReplies, setShowReplies] = useState<boolean>(false);
   const [newReplyText, setNewReplyText] = useState<string>("");
   const [showOptions, setShowOptions] = useState<boolean>(false);
@@ -31,7 +37,7 @@ function Comment({ comment, removeComment }) {
   const [numLikes, setNumLikes] = useState<number>(comment.likes.length);
 
   const isOwner: boolean = user._id == comment.user._id ? true : false;
-  const MAX_CHAR_AMOUNT = 200;
+  const MAX_CHAR_AMOUNT: number = 200;
 
   useEffect(() => {
     if (showReplies)
@@ -90,12 +96,9 @@ function Comment({ comment, removeComment }) {
       if (!response.ok) {
         throw new Error("Liking comment failed");
       }
-
-      const content = await response.json();
-      console.log(content);
     } catch (error) {
       setIsLiked(false);
-      console.log(error);
+      console.log(error)
     }
   }
 
@@ -117,9 +120,6 @@ function Comment({ comment, removeComment }) {
       if (!response.ok) {
         throw new Error("Liking comment failed");
       }
-
-      const content = await response.json();
-      console.log(content);
     } catch (error) {
       setIsLiked(true);
       console.log(error);
@@ -140,7 +140,6 @@ function Comment({ comment, removeComment }) {
       }
 
       const content = await response.json();
-      console.log(content);
       setReplies(content);
     } catch (error) {
       console.log(error);
@@ -166,7 +165,6 @@ function Comment({ comment, removeComment }) {
       }
 
       const content = await response.json();
-      console.log(content);
       handleReplies(content);
       setNewReplyText("");
     } catch (error) {
@@ -188,11 +186,9 @@ function Comment({ comment, removeComment }) {
       },
           body: JSON.stringify({ text: commentText })});
 
-      console.log(await response.json());
       if (!response.ok) {
         throw new Error("Editing comment failed");
       }
-
     } catch (error) {
       console.log(error);
     }
@@ -212,11 +208,9 @@ function Comment({ comment, removeComment }) {
           body: JSON.stringify({ postId: comment.post }
       )});
 
-      console.log(await response.json());
       if (!response.ok) {
         throw new Error("Deleting comment failed");
       }
-
     } catch (error) {
       console.log(error);
     }

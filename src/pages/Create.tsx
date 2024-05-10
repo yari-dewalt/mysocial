@@ -15,7 +15,7 @@ function Create() {
   const [files, setFiles] = useState<File>([]);
   const { user, setLoadingProgress } = useContext(AppContext);
   const [isLoading ,setIsLoading] = useState<boolean>(false);
-  const maxCharCount = 500;
+  const maxCharCount: number = 500;
   const navigate = useNavigate();
 
   function handleChangeText(e: React.ChangeEvent<HTMLTextAreaElement>) {
@@ -69,7 +69,6 @@ function Create() {
       }
 
       const content = await response.json();
-      console.log(content);
       
       setIsLoading(false);
       setLoadingProgress(100);

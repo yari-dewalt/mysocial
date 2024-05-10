@@ -1,3 +1,5 @@
+import type { User, Post } from "../types.ts";
+
 import UserCircle from "../components/UserCircle";
 import PostsArea from "../components/PostsArea";
 
@@ -12,17 +14,17 @@ import { useMediaQuery } from "@react-hook/media-query";
 
 function Profile() {
   const params = useParams();
-  const userId = params.userId;
+  const userId: string = params.userId;
   const navigate = useNavigate();
   const { user, handleUser, setLoadingProgress } = useContext(AppContext);
-  const [profileUser, setProfileUser] = useState(null);
-  const [posts, setPosts] = useState([]);
+  const [profileUser, setProfileUser] = useState<User>(null);
+  const [posts, setPosts] = useState<Post[]>([]);
   const [isSelf, setIsSelf] = useState<boolean>(false);
   const [isFollowing, setIsFollowing] = useState<boolean>(false);
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [bio, setBio] = useState<string>("");
   const [updatedBio, setUpdatedBio] = useState<string>("");
-  const isPhone = useMediaQuery("(max-width: 610px)");
+  const isPhone: boolean = useMediaQuery("(max-width: 610px)");
 
   const MAX_CHAR_AMOUNT = 200;
 
@@ -53,7 +55,6 @@ function Profile() {
         setBio(content.bio);
         setUpdatedBio(content.bio);
       }
-      console.log(content);
 
       if (!response.ok) {
         throw new Error("Failed to fetch profile data");
@@ -67,7 +68,6 @@ function Profile() {
 
   async function fetchPosts() {
     try {
-      console.log(Date.now());
       setLoadingProgress(20);
       const response = await fetch(`https://mysocial-backend.onrender.com/users/${userId}/posts`,
       {
@@ -78,7 +78,6 @@ function Profile() {
 
       const content = await response.json();
       setPosts(content);
-      console.log(content);
 
       if (!response.ok) {
         throw new Error("Failed to fetch user's posts");
@@ -101,7 +100,6 @@ function Profile() {
         headers: { "Content-Type": "application/json",
       }});
 
-      console.log(await response.json());
       if (!response.ok) {
         throw new Error("Logout failed");
       }
@@ -130,8 +128,6 @@ function Profile() {
       },
         body: JSON.stringify({ senderId: user._id })
       });
-
-      console.log(await response.json());
 
       if (!response.ok) {
         throw new Error("Follow request failed");
@@ -172,7 +168,6 @@ function Profile() {
         body: JSON.stringify({ senderId: user._id })
       });
 
-      console.log(await response.json());
       if (!response.ok) {
         throw new Error("Unfollow request failed");
       }
@@ -190,7 +185,6 @@ function Profile() {
 
   function toggleIsEditing() {
     setIsEditing(!isEditing);
-    console.log(updatedBio);
     setBio(updatedBio);
   }
 
@@ -201,7 +195,6 @@ function Profile() {
   async function editBio() {
     try {
       setUpdatedBio(bio);
-      console.log(bio);
       setIsEditing(false);
       const response = await fetch(`https://mysocial-backend.onrender.com/users/${profileUser._id}/bio`,
       {
@@ -212,7 +205,6 @@ function Profile() {
         body: JSON.stringify({ bio: bio })
       });
 
-      console.log(await response.json());
       if (!response.ok) {
         throw new Error("Editing bio failed");
       }
@@ -227,7 +219,6 @@ function Profile() {
     const file = e.target.files[0];
     const formData = new FormData();
     formData.append("userImage", file);
-    console.log(e.target.files[0]);
 
     try {
       const response = await fetch(`https://mysocial-backend.onrender.com/users/${profileUser._id}/image`,
@@ -263,7 +254,6 @@ function Profile() {
       }
 
       const content = await response.json();
-      console.log(content);
 
       navigate(`/messages/${content._id}`);
     } catch (error) {

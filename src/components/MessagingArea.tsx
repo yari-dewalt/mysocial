@@ -1,3 +1,5 @@
+import type { User } from "../types.ts";
+
 import MessagingHeader from "./MessagingHeader";
 import Message from "./Message";
 import SuggestedBox from "./SuggestedBox";
@@ -14,12 +16,12 @@ import { v4 as uuidv4 } from "uuid";
 function MessagingArea() {
   const { user, setLoadingProgress } = useContext(AppContext);
   const params = useParams();
-  const conversationId = params.conversationId;
-  const [conversationUser, setConversationUser] = useState(null);
+  const conversationId: string = params.conversationId;
+  const [conversationUser, setConversationUser] = useState<User>(null);
   const [messages, setMessages] = useState([]);
   const [newMessageText, setNewMessageText] = useState<string>("");
   const [isTyping, setIsTyping] = useState<boolean>(false);
-  const [suggestedUsers, setSuggestedUsers] = useState([]);
+  const [suggestedUsers, setSuggestedUsers] = useState<User[]>([]);
   const messagesEndRef = useRef(null);
 
   useEffect(() => {

@@ -1,8 +1,14 @@
+import type { User } from "../types.ts";
+
 import UserSearchResult from "./UserSearchResult";
 import NewMessageSearchResult from "./NewMessageSearchResult";
-import UserSearchResultSkeleton from "./UserSearchResultSkeleton";
 
-function SuggestedBox({ users, type }) {
+interface Props {
+  users: User[],
+  type: string
+}
+
+function SuggestedBox({ users, type }: Props) {
   return (
     <>
       {users.length > 0 &&
@@ -10,8 +16,8 @@ function SuggestedBox({ users, type }) {
           <h2 className="text-xl font-medium">Suggested</h2>
           <div className="flex flex-col w-full">
             {users.map((user) => {
-              if (type == "follow") return <UserSearchResult resultUser={user}/>
-              else if (type == "message") return <NewMessageSearchResult resultUser={user}/>
+              if (type == "follow") return <UserSearchResult resultUser={user} key={user._id}/>
+              else if (type == "message") return <NewMessageSearchResult resultUser={user} key={user._id}/>
             })}
           </div>
         </div>)

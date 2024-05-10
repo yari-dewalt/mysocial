@@ -1,3 +1,5 @@
+import type { User } from "../types.ts";
+
 import messagesIcon from "../assets/messages.svg";
 import selectedMessagesIcon from "../assets/selected_messages.svg";
 import profileIcon from "../assets/profile.svg";
@@ -7,7 +9,7 @@ import { useState, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 
 
-function ProfileModule({ user }) {
+function ProfileModule({ user }: User) {
   const location = useLocation();
   const [selected, setSelected] = useState<string>("");
 

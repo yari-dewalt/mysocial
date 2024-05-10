@@ -58,7 +58,6 @@ function Signup() {
       const { newUser } = await response.json();
       handleUser(newUser);
       socket.emit("assign id", parsedUser._id);
-      console.log(newUser);
       localStorage.setItem("user", JSON.stringify(newUser));
       setError("");
       setLoadingProgress(100);

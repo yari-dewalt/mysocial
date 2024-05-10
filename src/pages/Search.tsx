@@ -1,3 +1,5 @@
+import type { User, Post } from "../types.ts";
+
 import SearchBar from "../components/SearchBar";
 import UserSearchResult from "../components/UserSearchResult";
 import PostSearchResult from "../components/PostSearchResult";
@@ -11,11 +13,11 @@ import { useState, useEffect, useContext } from "react";
 function Search() {
   const [searchValue, setSearchValue] = useState<string>("");
   const [option, setOption] = useState<string>("users");
-  const [searchResults, setSearchResults] = useState([]);
+  const [searchResults, setSearchResults] = useState<User[]|Post[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const { user } = useContext(AppContext);
-  const LIMIT = 100;
-  const OFFSET = 0;
+  const { user }: User = useContext(AppContext);
+  const LIMIT: number = 100;
+  const OFFSET: number = 0;
 
   useEffect(() => {
     if (option == "users" && searchValue.trim() != "") {
@@ -73,7 +75,6 @@ function Search() {
 
       const filteredUsers = users.filter(item => item._id != user._id);
 
-      console.log(filteredUsers);
       setSearchResults(filteredUsers);
     } catch (error) {
       console.log(error);
@@ -97,7 +98,6 @@ function Search() {
 
       const filteredPosts = posts.filter(item => item.user._id != user._id);
 
-      console.log(filteredPosts);
       setSearchResults(filteredPosts);
     } catch (error) {
       console.log(error);

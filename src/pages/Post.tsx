@@ -1,3 +1,5 @@
+import type { Post } from "../types.ts";
+
 import TextPost from "../components/TextPost";
 import ImagePost from "../components/ImagePost";
 
@@ -5,8 +7,8 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 function Post() {
-  const { postId } = useParams();
-  const [post, setPost] = useState(null);
+  const { postId }: string = useParams();
+  const [post, setPost] = useState<Post>(null);
 
   useEffect(() => {
     fetchPost();
@@ -22,7 +24,6 @@ function Post() {
       }});
 
       const content = await response.json();
-      console.log(content);
 
       if (!response.ok) {
         throw new Error("Failed to fetch post data");

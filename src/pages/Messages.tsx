@@ -11,7 +11,7 @@ function Messages() {
   const { user, setLoadingProgress } = useContext(AppContext);
   const [conversations, setConversations] = useState([]);
   const params = useParams();
-  const currentConversationId = params.conversationId;
+  const currentConversationId: string = params.conversationId;
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -43,7 +43,6 @@ function Messages() {
       }});
 
       const content = await response.json();
-      console.log(content);
       setConversations(content);
 
       if (!response.ok) {

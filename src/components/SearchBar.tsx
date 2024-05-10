@@ -1,6 +1,11 @@
 import searchIcon from "../assets/search.svg";
 
-function SearchBar({ placeholder, handleChange }) {
+interface Props {
+  placeholder: string,
+  handleChange: () => void
+}
+
+function SearchBar({ placeholder, handleChange }: Props) {
   return (
     <div className="flex items-center gap-2 h-10 pl-4 pr-4">
       <img src={searchIcon} className="min-w-5 w-6 opacity-50"></img>

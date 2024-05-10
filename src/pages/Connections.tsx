@@ -1,3 +1,5 @@
+import type { User } from "../types.ts";
+
 import SearchBar from "../components/SearchBar";
 import UserSearchResult from "../components/UserSearchResult";
 
@@ -6,12 +8,12 @@ import { useParams, useLocation, Link } from "react-router-dom";
 
 function Connections() {
   const location = useLocation();
-  const { userId } = useParams();
-  const tab = location.search.includes("followers") ? "followers" : "following";
-  const [user, setUser] = useState(null);
-  const [results, setResults] = useState([]);
-  const [searchValue, setSearchValue] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
+  const { userId }: string = useParams();
+  const tab: string = location.search.includes("followers") ? "followers" : "following";
+  const [user, setUser] = useState<User>(null);
+  const [results, setResults] = useState<User[]>([]);
+  const [searchValue, setSearchValue] = useState<string>("");
+  const [searchResults, setSearchResults] = useState<User[]>([]);
 
   useEffect(() => {
     fetchUser(userId);
@@ -29,7 +31,6 @@ function Connections() {
 
       const content = await response.json();
       setUser(content);
-      console.log(content);
 
       if (!response.ok) {
         throw new Error("Failed to fetch user");
@@ -53,7 +54,6 @@ function Connections() {
 
   async function fetchConnections() {
     try {
-      console.log(`fetching ${tab}`);
       const response = await fetch(`https://mysocial-backend.onrender.com/users/${userId}/${tab}`,
       {
         method: "GET",
@@ -62,7 +62,6 @@ function Connections() {
       }});
 
       const content = await response.json();
-      console.log(content);
       setResults(content);
 
       if (!response.ok) {

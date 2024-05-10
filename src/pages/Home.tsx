@@ -1,3 +1,5 @@
+import type { Post, User } from "../types.ts";
+
 import SideInfo from "../components/SideInfo";
 import TextPost from "../components/TextPost";
 import ImagePost from "../components/ImagePost";
@@ -10,15 +12,15 @@ import { useState, useContext, useEffect } from "react";
 
 function Home() {
   const { user, setLoadingProgress } = useContext(AppContext);
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState<Post[]>([]);
   const [offset, setOffset] = useState<number>(0);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [showNewPostNotification, setShowNewPostNotification] = useState<boolean>(false);
   const [newPostAmount, setNewPostAmount] = useState<number>(0);
   const [isFetchingMore, setIsFetchingMore] = useState<boolean>(false); // Flag to prevent multiple fetch calls
   const [noMorePosts, setNoMorePosts] = useState<boolean>(false);
-  const [suggestedUsers, setSuggestedUsers] = useState([]);
-  const [featuredPosts, setFeaturedPosts] = useState([]);
+  const [suggestedUsers, setSuggestedUsers] = useState<User[]>([]);
+  const [featuredPosts, setFeaturedPosts] = useState<Post[]>([]);
 
   useEffect(() => {
     fetchNewestPostsFromFollowing(offset);
@@ -68,7 +70,6 @@ function Home() {
       }});
 
       const content = await response.json();
-      console.log(content);
 
       if (!response.ok) {
         throw new Error("Failed to fetch posts from following");
@@ -94,7 +95,6 @@ function Home() {
 
   async function fetchMorePosts() {
     if (!isLoading) {
-      console.log("fetching more posts");
       setIsFetchingMore(true); // Set flag to true when fetching more posts
       const newOffset = offset + 10;
       setOffset(newOffset);
@@ -115,7 +115,6 @@ function Home() {
       }});
 
       const content = await response.json();
-      console.log(content);
 
       if (!response.ok) {
         throw new Error("Failed to fetch featured posts");
@@ -144,7 +143,6 @@ function Home() {
       }});
 
       const content = await response.json();
-      console.log(content);
 
       if (!response.ok) {
         throw new Error("Failed to fetch conversation data");

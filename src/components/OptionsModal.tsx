@@ -3,7 +3,12 @@ import deleteIcon from "../assets/delete.svg";
 
 import { motion } from "framer-motion";
 
-function OptionsModal({ handleEditState, handleDeleteState }) {
+interface Props {
+  handleEditState: () => void,
+  handleDeleteState: () => void
+}
+
+function OptionsModal({ handleEditState, handleDeleteState }: Props) {
   return (
     <motion.div 
       initial={{ opacity: 0 }}

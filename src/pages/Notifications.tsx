@@ -1,3 +1,5 @@
+import type { Notification } from "../types.ts";
+
 import Notification from "../components/Notification";
 
 import { socket } from "../socket";
@@ -7,7 +9,7 @@ import { useState, useContext, useEffect } from "react";
 
 function Notifications() {
   const { user, handleUser, setLoadingProgress } = useContext(AppContext);
-  const [notifications, setNotifications] = useState([]);
+  const [notifications, setNotifications] = useState<Notification[]>([]);
 
   useEffect(() => {
     fetchNotifications();
@@ -42,7 +44,6 @@ function Notifications() {
       }});
 
       const content = await response.json();
-      console.log(content);
 
       if (!response.ok) {
         throw new Error("Fetching notifications failed");
@@ -69,7 +70,6 @@ function Notifications() {
         headers: { "Content-Type": "application/json",
       }});
 
-      console.log(await response.json());
       if (!response.ok) {
         throw new Error("Deleting notification failed");
       }

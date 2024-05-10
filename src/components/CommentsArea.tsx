@@ -1,5 +1,6 @@
+import type { User } from "../types.ts";
+
 import Comment from "./Comment";
-import UserCircle from "./UserCircle";
 
 import sendIcon from "../assets/send.svg";
 
@@ -8,11 +9,17 @@ import { AppContext } from "../App";
 
 import { useState, useContext, useEffect } from "react";
 
-function CommentsArea({ postId, handleCommentsAmount }) {
-  const { user } = useContext(AppContext);
-  const [comments, setComments] = useState([]);
+interface Props {
+  postId: string,
+  handleCommentsAmount: () => void
+}
+
+
+function CommentsArea({ postId, handleCommentsAmount }: Props) {
+  const { user }: User = useContext(AppContext);
+  const [comments, setComments] = useState<Comment[]>([]);
   const [newCommentText, setNewCommentText] = useState<string>("");
-  const MAX_CHAR_AMOUNT = 500;
+  const MAX_CHAR_AMOUNT: number = 500;
 
   useEffect(() => {
     fetchComments();
@@ -48,7 +55,6 @@ function CommentsArea({ postId, handleCommentsAmount }) {
       }
 
       const content = await response.json();
-      console.log(content);
       setComments(content);
       handleCommentsAmount(content.length);
     } catch (error) {
@@ -77,7 +83,6 @@ function CommentsArea({ postId, handleCommentsAmount }) {
       }
 
       const content = await response.json();
-      console.log(content);
       handleComments(content);
       setNewCommentText("");
       handleCommentsAmount(comments.length + 1);

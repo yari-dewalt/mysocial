@@ -1,3 +1,5 @@
+import type { User } from "../types.ts";
+
 import SearchBar from "./SearchBar";
 import NewMessageSearchResult from "./NewMessageSearchResult";
 import UserSearchResultSkeleton from "./UserSearchResultSkeleton";
@@ -8,16 +10,16 @@ import { AppContext } from "../App";
 
 import { useState, useEffect, useContext } from "react";
 
-function NewMessageModal({ closeModal }) {
-  const { user } = useContext(AppContext);
+function NewMessageModal({ closeModal }: () => void) {
+  const { user }: User = useContext(AppContext);
   const [searchValue, setSearchValue] = useState<string>("");
-  const [following, setFollowing] = useState([]);
+  const [following, setFollowing] = useState<User[]>([]);
   const [searchResults, setSearchResults] = useState([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [tab, setTab] = useState<string>("all");
 
-  const LIMIT = 20;
-  const OFFSET = 0;
+  const LIMIT: number = 20;
+  const OFFSET: number = 0;
 
   useEffect(() => {
     fetchFollowing();

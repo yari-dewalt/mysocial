@@ -1,6 +1,13 @@
+import type { User } from "../types.ts";
+
 import { Link } from "react-router-dom";
 
-function UserCircle({ user, size }) {
+interface Props {
+  user: User,
+  size: number
+}
+
+function UserCircle({ user, size }: Props) {
   return (
     <Link to={`/users/${user._id}`}>
       <div style={{ "height": size * 11, "width": size * 11 }} className={`flex justify-center items-center rounded-full bg-gradient-to-bl from-violet-500 to-yellow-400 from-20%`}>

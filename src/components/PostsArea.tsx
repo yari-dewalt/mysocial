@@ -1,3 +1,5 @@
+import type { Post } from "../types.ts";
+
 import ImagePost from "./ImagePost";
 import TextPost from "./TextPost";
 
@@ -10,7 +12,7 @@ import textPostIconSelected from "../assets/text_post_selected.svg";
 
 import { useState } from "react";
 
-function PostsArea({ posts }) {
+function PostsArea({ posts }: Post[]) {
   const [option, setOption] = useState<string>("all");
 
   return (

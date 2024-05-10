@@ -1,6 +1,8 @@
+import type { User } from "../types.ts";
+
 import { Link } from "react-router-dom";
 
-function MessagingHeader({ user }) {
+function MessagingHeader({ user }: User) {
   return (
     <div className="p-2 flex justify-center items-center bg-white shadow-sm border-b-2 border-neutral-200">
       <div className="flex flex-col items-center">

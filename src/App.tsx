@@ -1,3 +1,5 @@
+import type { User } from "../types.ts";
+
 import NavBar from "./components/NavBar";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -16,9 +18,9 @@ import { useState, useEffect, createContext } from "react";
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 
 export const AppContext = createContext<{
-  user: any; // Specify the type of user here
-  handleUser: React.Dispatch<React.SetStateAction<any>>; // Type for setUser
-  setLoadingProgress: React.Dispatch<React.SetStateAction<number>>; // Type for setLoadingProgress
+  user: User,
+  handleUser: () => void,
+  setLoadingProgress: () => void
 }>({
   user: null,
   handleUser: () => {},
@@ -26,9 +28,8 @@ export const AppContext = createContext<{
 });
 
 function App() {
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
+  const [user, setUser] = useState<User>(JSON.parse(localStorage.getItem("user")));
   const [loadingProgress, setLoadingProgress] = useState<number>(0);
-  const [isConnected, setIsConnected] = useState(socket.connected);
 
   function handleUser(newUserData) {
     setUser(newUserData);
@@ -52,17 +53,12 @@ function App() {
         const content = await response.json();
         setUser(content);
         localStorage.setItem("user", JSON.stringify(content));
-        console.log(content);
       } catch (error) {
         console.log(error);
       }
     };
 
     socket.connect(); // Connect
-
-    socket.on("connect", onConnect);
-    socket.on("disconnect", onDisconnect);
-
 
     // Check if user is stored in localStorage
     const storedUser = localStorage.getItem("user");
@@ -78,19 +74,8 @@ function App() {
       // No stored user, set user to null
       setUser(null);
     }
-
-    function onConnect() {
-      setIsConnected(true);
-    }
-
-    function onDisconnect() {
-      setIsConnected(false);
-    }
-
     return () => {
       socket.disconnect();
-      socket.off("connect", onConnect);
-      socket.off("disconnect", onDisconnect);
     }
   }, []); // Empty dependency array to run effect only once
 

@@ -1,3 +1,5 @@
+import type { User } from "../types.ts";
+
 import UserCircle from "./UserCircle";
 
 import { AppContext } from "../App";
@@ -5,8 +7,13 @@ import { AppContext } from "../App";
 import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 
-function NewMessageSearchResult({ resultUser, closeModal = () => {} }) {
-  const { user } = useContext(AppContext);
+interface Props {
+  resultUser: User,
+  closeModal: () => void
+}
+
+function NewMessageSearchResult({ resultUser, closeModal = () => {} }: Props) {
+  const { user }: User = useContext(AppContext);
   const navigate = useNavigate();
 
   async function sendMessage() {

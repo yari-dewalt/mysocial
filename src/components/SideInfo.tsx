@@ -1,3 +1,5 @@
+import type { User } from "../types.ts";
+
 import UserCircle from "./UserCircle";
 import SuggestedBox from "./SuggestedBox";
 
@@ -5,7 +7,12 @@ import { AppContext } from "../App";
 
 import { useContext } from "react";
 
-function SideInfo({ user, suggestedUsers }) {
+interface Props {
+  user: User,
+  suggestedUsers: User[]
+}
+
+function SideInfo({ user, suggestedUsers }: Props) {
   const { handleUser, setLoadingProgress } = useContext(AppContext);
 
   async function logOut() {

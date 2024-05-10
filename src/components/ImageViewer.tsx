@@ -4,7 +4,7 @@ import arrowIcon from "../assets/arrow.svg";
 
 import { useState, useEffect } from "react";
 
-function ImageViewer({ images }) {
+function ImageViewer({ images }: string[]) {
   const [number, setNumber] = useState<number>(0);
   const [isViewing, setIsViewing] = useState<boolean>(false);
 

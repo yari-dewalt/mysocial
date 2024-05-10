@@ -1,3 +1,5 @@
+import type { Message, User } from "../types.ts";
+
 import OptionsModal from "./OptionsModal";
 import DeleteModal from "./DeleteModal";
 
@@ -8,11 +10,11 @@ import { useState, useContext } from "react";
 import { format, differenceInDays } from "date-fns";
 import TimeAgo from "javascript-time-ago";
 
-function Message({ message }) {
-  const { user } = useContext(AppContext);
+function Message({ message }: Message) {
+  const { user }: User = useContext(AppContext);
   const isSelf: boolean = (message.from._id == user._id) ? true : false;
-  const timeAgo = new TimeAgo("en-US");
-  const messageTimeAgo = differenceInDays(new Date(), message.edited ? new Date(message.lastEdited) : new Date(message.timestamp));
+  const timeAgo: TimeAgo = new TimeAgo("en-US");
+  const messageTimeAgo: Date = differenceInDays(new Date(), message.edited ? new Date(message.lastEdited) : new Date(message.timestamp));
   let modifiedTimestamp: string = "";
   const [messageText, setMessageText] = useState<string>(message.text);
   const [showOptions, setShowOptions] = useState<boolean>(false);

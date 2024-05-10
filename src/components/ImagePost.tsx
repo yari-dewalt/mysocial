@@ -1,3 +1,5 @@
+import type { Post, User } from "../types.ts";
+
 import UserCircle from "./UserCircle";
 import CommentsArea from "./CommentsArea";
 import OptionsModal from "./OptionsModal";
@@ -18,8 +20,8 @@ import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import TimeAgo from "javascript-time-ago";
 
-function ImagePost({ post }) {
-  const { user } = useContext(AppContext);
+function ImagePost({ post }: Post) {
+  const { user }: User = useContext(AppContext);
   const [showComments, setShowComments] = useState<boolean>(false);
   const [commentsAmount, setCommentsAmount] = useState<number>(post.comments.length);
   const [showOptions, setShowOptions] = useState<boolean>(false);
@@ -32,10 +34,10 @@ function ImagePost({ post }) {
   const [showLikes, setShowLikes] = useState<boolean>(false);
   const [checkLiked, setCheckLiked] = useState<boolean>(false);
 
-  const MAX_CHAR_AMOUNT = 500;
+  const MAX_CHAR_AMOUNT: number = 500;
 
   const isOwner: boolean = user._id == post.user._id ? true : false;
-  const timeAgo = new TimeAgo("en-US");
+  const timeAgo: TimeAgo = new TimeAgo("en-US");
 
   function toggleShowLikes(e: React.MouseEvent) {
     e.preventDefault();

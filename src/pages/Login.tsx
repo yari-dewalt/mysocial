@@ -25,7 +25,7 @@ function Login() {
       ...prevState,
       [name]: value
     }));
-  };
+  }
 
   async function sendLoginRequest(e: React.FormEvent) {
     e.preventDefault();
@@ -46,7 +46,6 @@ function Login() {
       }
       
       const { user } = await response.json();
-      console.log(user);
       handleUser(user);
       socket.emit("assign id", parsedUser._id);
       localStorage.setItem("user", JSON.stringify(user));
@@ -80,7 +79,6 @@ function Login() {
       }
       
       const { user } = await response.json();
-      console.log(user);
       handleUser(user);
       socket.emit("assign id", parsedUser._id);
       localStorage.setItem("user", JSON.stringify(user));

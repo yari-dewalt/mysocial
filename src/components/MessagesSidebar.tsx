@@ -1,3 +1,5 @@
+import type { Conversation, User } from "../types.ts";
+
 import SearchBar from "../components/SearchBar";
 import SidebarConversation from "../components/SidebarConversation";
 import NewMessageModal from "../components/NewMessageModal";
@@ -10,13 +12,18 @@ import { useState, useContext, useEffect } from "react";
 import { useMediaQuery } from "@react-hook/media-query";
 import { motion } from "framer-motion";
 
-function MessagesSidebar({ conversations, removeConversation }) {
-  const { user } = useContext(AppContext);
+interface Props {
+  conversations: Conversation[],
+  removeConversation: () => void
+}
+
+function MessagesSidebar({ conversations, removeConversation }: Props) {
+  const { user }: User = useContext(AppContext);
   const [newMessageModalOpen, setNewMessageModalOpen] = useState<boolean>(false);
   const [searchValue, setSearchValue] = useState<string>("");
-  const [searchResults, setSearchResults] = useState([]);
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  const isPhone = useMediaQuery("(max-width: 610px)");
+  const [searchResults, setSearchResults] = useState<Conversation[]>([]);
+  const [sidebarOpen, setSidebarOpen] = useState<boolean>(false);
+  const isPhone: boolean = useMediaQuery("(max-width: 610px)");
 
   function toggleNewMessageModal() {
     setNewMessageModalOpen(!newMessageModalOpen);

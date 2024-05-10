@@ -1,3 +1,5 @@
+import type { Notification } from "../types.ts";
+
 import UserCircle from "./UserCircle";
 
 import closeIcon from "../assets/close.svg";
@@ -5,8 +7,13 @@ import closeIcon from "../assets/close.svg";
 import { Link } from "react-router-dom";
 import TimeAgo from "javascript-time-ago";
 
-function Notification({ notification, onDelete }) {
-  const timeAgo = new TimeAgo("en-US");
+interface Props {
+  notification: Notification,
+  onDelete: () => void
+}
+
+function Notification({ notification, onDelete }: Props) {
+  const timeAgo: TimeAgo = new TimeAgo("en-US");
 
   function deleteNotification() {
     onDelete(notification);

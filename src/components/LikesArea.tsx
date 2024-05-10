@@ -2,7 +2,12 @@ import UserSearchResult from "./UserSearchResult";
 
 import { useState, useEffect } from "react";
 
-function LikesArea({ postId, checkLiked }) {
+interface Props {
+  postId: string,
+  checkLiked: () => void
+}
+
+function LikesArea({ postId, checkLiked }: Props) {
   const [likes, setLikes] = useState([]);
 
   useEffect(() => {
