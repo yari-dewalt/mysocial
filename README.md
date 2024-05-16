@@ -4,6 +4,7 @@
 <h2>Features</h2>
 <ul>
     <li><b>Create, Edit, and Delete Posts:</b> Share your thoughts and images with ease.</li>
+    <li><b>Profile Customization:</b> Upload a profile picture and change your bio!</li>
     <li><b>Personalized Home Feed:</b> Stay updated with recent posts from followed users and featured content.</li>
     <li><b>Search Functionality:</b> Easily find users and posts through the search feature.</li>
     <li><b>Follow Users:</b> Stay connected with friends and other users.</li>
