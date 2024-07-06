@@ -48,7 +48,7 @@ function Login() {
       
       const { user } = await response.json();
       handleUser(user);
-      socket.emit("assign id", parsedUser._id);
+      socket.emit("assign id", user._id);
       localStorage.setItem("user", JSON.stringify(user));
       setError("");
       setLoadingProgress(100);
