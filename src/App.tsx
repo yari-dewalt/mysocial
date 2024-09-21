@@ -12,6 +12,7 @@ import Messages from "./pages/Messages";
 import Post from "./pages/Post";
 import Connections from "./pages/Connections";
 import Notifications from "./pages/Notifications";
+import Error from "./pages/Error";
 import LoadingBar from "react-top-loading-bar";
 
 import { socket } from "./socket";
@@ -103,6 +104,7 @@ function App() {
             <Route path="/create" element={user ? <Create/> : <Navigate to="/login"/>}/>
             <Route path="/login" element={!user ? <Login/> : <Navigate to="/"/>}/>
             <Route path="/signup" element={!user ? <Signup/> : <Navigate to="/"/>}/>
+            <Route path="*" element={<Error/>}/>
           </Routes>
         </Router>
       </div>
